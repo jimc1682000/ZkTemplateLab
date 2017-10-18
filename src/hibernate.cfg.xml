@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- SQL方言，這邊設定的是MS-SQL -->
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+		<!-- JDBC驅動程式 -->
+		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+		<!-- JDBC URL -->
+		<property name="hibernate.connection.url">jdbc:sqlserver://servername:1433;databaseName=LAB;applicationName=LAB;</property>
+		<!-- 資料庫使用者 -->
+		<property name="hibernate.connection.username">labuser</property>
+		<!-- 資料庫密碼 -->
+		<property name="hibernate.connection.password">password</property>
+		<!-- 顯示實際操作資料庫時的SQL -->
+		<property name="show_sql">true</property>
+		<!-- 將顯示的SQL排版，方便觀看 -->
+		<property name="format_sql">true</property>
+		<!-- 將SQL詳細內容顯示出來 <property name="use_sql_comments">true</property> 如果沒有該table，則create，如果有，則update -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<!-- 設定Batch_Size -->
+		<property name="hibernate.jdbc.batch_size">50</property>
+		<!-- 設定batch versioned data讓hibernate可以Batch Update -->
+		<property name="hibernate.jdbc.batch_versioned_data">50</property>
+		<!-- 設定順序性的insert, update，讓hibernate可以更有效率的執行 -->
+		<property name="hibernate.order_inserts">true</property>
+		<property name="hibernate.order_updates">true</property>
+		<!-- C3P0 連接池設定 -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<!-- 最小的Connection數目 -->
+		<property name="hibernate.c3p0.min_size">30</property>
+		<!-- 最大的Connection數目 -->
+		<property name="hibernate.c3p0.max_size">100</property>
+		<!-- 指達到max_size的用量後一次可以再追加多少的連線數 -->
+		<property name="hibernate.c3p0.acquire_increment">5</property>
+		<!-- 允許的idle時間(seconds) -->
+		<property name="hibernate.c3p0.timeout">1000</property>
+		<!-- 最大的Statement數目 -->
+		<property name="hibernate.c3p0.max_statements">0</property>
+		<!-- idle的測試週期(seconds) -->
+		<property name="hibernate.c3p0.idle_test_period">1000</property>
+		<!-- 物件與資料庫表格映射文件 -->
+		<mapping class="tw.jimmy.po.Teacher" />
+		<mapping class="tw.jimmy.po.Student" />
+	</session-factory>
+</hibernate-configuration>

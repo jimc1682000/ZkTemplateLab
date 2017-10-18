@@ -1,0 +1,50 @@
+<?page title="Jimmy's Education System"?>
+<window title="Jimmy's Education System" border="normal" width="500px"
+	apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('tw.jimmy.vm.SystemVM')">
+	<grid model="@load(vm.teachers)" emptyMessage="No Data">
+		<auxhead>
+			<auxheader label="Teachers" colspan="3" />
+		</auxhead>
+		<columns>
+			<column label="Uid" />
+			<column label="Name" />
+			<column label="Email" />
+		</columns>
+		<template name="model">
+			<row>
+				<label value="@load(each.uid)" />
+				<label value="@load(each.name)" />
+				<label value="@load(each.email)" />
+			</row>
+		</template>
+	</grid>
+	<separator />
+	<hlayout>
+		<label value="Grade: " />
+		<combobox selectedItem="@bind(vm.selGrade)" readonly="true"
+			model="@load(vm.grades)">
+			<template name="model">
+				<comboitem label="@load(each)" />
+			</template>
+		</combobox>
+	</hlayout>
+	<separator />
+	<listbox model="@load(vm.students)" emptyMessage="No Data"
+		checkmark="true" multiple="true">
+		<listhead>
+			<listheader label="Uid" />
+			<listheader label="Name" />
+			<listheader label="Email" />
+			<listheader label="Grade" />
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell label="@load(each.uid)" />
+				<listcell label="@load(each.name)" />
+				<listcell label="@load(each.email)" />
+				<listcell label="@load(each.grade)" />
+			</listitem>
+		</template>
+	</listbox>
+</window>
